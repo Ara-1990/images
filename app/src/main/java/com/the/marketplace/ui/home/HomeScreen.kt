@@ -1,5 +1,6 @@
 package com.the.marketplace.ui.home
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -12,16 +13,28 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun HomeScreen (viewModel: HomeViewModel = hiltViewModel()){
 
     val products by viewModel.products.collectAsState()
+    val query by viewModel.query.collectAsState()
 
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2)
-    ) {
+    Column{
+        SearchBar(
+            query = query,
+            onQueryChange = {
+                viewModel.updateQuery(it)
+            }
+        )
 
-        items(products) { product ->
 
-            ProductItem(product)
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2)
+        ) {
+
+            items(products) { product ->
+
+                ProductItem(product)
+
+            }
 
         }
-
     }
+
 }

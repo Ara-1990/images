@@ -17,9 +17,29 @@ class HomeViewModel @Inject constructor(private val getProductsUseCase: GetProdu
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products = _products.asStateFlow()
 
+    private val _query = MutableStateFlow("")
+    val query = _query.asStateFlow()
+
     init {
         loadProducts()
     }
+
+    fun updateQuery(newQuery: String) {
+        _query.value = newQuery
+        searchProducts()
+    }
+
+    private fun searchProducts() {
+
+        viewModelScope.launch {
+
+            _products.value =
+                getProductsUseCase(_query.value)
+
+        }
+
+    }
+
 
     private fun loadProducts() {
 

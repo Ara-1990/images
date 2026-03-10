@@ -96,6 +96,7 @@ dependencies {
     implementation(libs.navigation.compose)
 
     implementation(libs.coil.compose)
+    implementation(libs.androidx.compose.material.icons)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
