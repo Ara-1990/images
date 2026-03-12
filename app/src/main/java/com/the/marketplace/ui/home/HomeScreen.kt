@@ -8,9 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+
 
 @Composable
-fun HomeScreen (viewModel: HomeViewModel = hiltViewModel()){
+fun HomeScreen (navController: NavController, viewModel: HomeViewModel = hiltViewModel()){
 
     val products by viewModel.products.collectAsState()
     val query by viewModel.query.collectAsState()
@@ -30,7 +32,18 @@ fun HomeScreen (viewModel: HomeViewModel = hiltViewModel()){
 
             items(products) { product ->
 
-                ProductItem(product)
+                ProductItem(
+                    product = product,
+                    onClick = {
+                        navController.currentBackStackEntry
+                            ?.savedStateHandle
+                            ?.set("product", product)
+
+                        navController.navigate("detail")
+
+                    }
+
+                )
 
             }
 

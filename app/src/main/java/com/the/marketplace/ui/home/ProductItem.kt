@@ -1,5 +1,6 @@
 package com.the.marketplace.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,10 +14,14 @@ import coil.compose.AsyncImage
 import com.the.marketplace.domain.model.Product
 
 @Composable
-fun ProductItem(product: Product) {
+fun ProductItem(product: Product, onClick: (Product) -> Unit) {
     Card(
         modifier = Modifier
             .padding(8.dp)
+            .clickable {
+                onClick(product)
+            }
+
     ) {
 
         Column {
