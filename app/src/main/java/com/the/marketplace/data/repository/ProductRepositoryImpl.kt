@@ -13,5 +13,14 @@ class ProductRepositoryImpl (private val api: PixabayApi): ProductRepository{
         return response.hits.map { it.toProduct() }
     }
 
+//    override suspend fun getProductById(id: Int): Product {
+//        val response = api.searchImages(query = "")
+//        return response.hits
+//            .map { it.toProduct() }
+//            .firstOrNull { it.id == id }
+//            ?: throw Exception("Product not found")
+//
+//    }
+
 
 }
