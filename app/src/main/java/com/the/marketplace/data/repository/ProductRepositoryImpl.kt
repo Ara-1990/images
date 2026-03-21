@@ -1,6 +1,6 @@
 package com.the.marketplace.data.repository
 
-import com.the.marketplace.BuildConfig
+
 import com.the.marketplace.data.mapper.toProduct
 import com.the.marketplace.data.remote.PixabayApi
 import com.the.marketplace.domain.model.Product
